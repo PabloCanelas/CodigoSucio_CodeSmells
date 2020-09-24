@@ -1,0 +1,8 @@
+----------Calculadora------------
+--Operaciones:
+         1.- Sumar al valor actual
+         2.- Restar al valor actual
+         3.- Dividir al valor actual
+         4.- Multiplicar al valor actual
+         5.- Salir de la calculadora
+         6.- Reiniciar la calculadora

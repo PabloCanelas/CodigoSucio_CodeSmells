@@ -8,8 +8,10 @@
 
 #include <iostream>
 using namespace std;
-
-float Calculadora(float x, float y, int operacion)
+#include "OperacionMatematica.cpp"
+#include "Calculadora.cpp"
+#include "Suma.cpp"
+float calculadora(float x, float y, int operacion)
 {
     cout << "__________________" << endl;
     cout << "Ultima operacion" << endl;
@@ -39,61 +41,66 @@ float Calculadora(float x, float y, int operacion)
 }
 int main()
 {
-    int control = 0;
-    float res = 0;
-    int menu = -1;
-    float x, y;
-    if (control == 0)
-    {
-        cout << "Calculadora " << endl;
-        cout << "__________________" << endl;
+    Calculadora calculadora;
+    calculadora.ejecutarCalculadora();
+    //calculadora.ejecutarCalculadora();
+    // int control = 0;
+    // float res = 0;
+    // int menu = -1;
+    // float x, y;
 
-        cout << "Operaciones: " << endl;
-        cout << "1.- Sumar" << endl;
-        cout << "2.- Restar" << endl;
-        cout << "3.- Dividir" << endl;
-        cout << "4.- Multiplicar" << endl;
-        cout << "__________________" << endl;
-        cout << "Valor 1?" << endl;
-        cin >> x;
-        cout << "Valor 2?" << endl;
-        cin >> y;
-        cout << "operacion?" << endl;
-        cin >> menu;
-        res = Calculadora(x, y, menu);
-        control++;
-    }
 
-    if (control != 0)
-    {
-        while (menu != 5 && menu != 6)
-        {
-            cout << "__________________" << endl;
-            cout << "Operaciones: " << endl;
-            cout << "1.- Sumar al valor actual" << endl;
-            cout << "2.- Restar al valor actual" << endl;
-            cout << "3.- Dividir al valor actual" << endl;
-            cout << "4.- Multiplicar al valor actual" << endl;
-            cout << "5.- Salir de la calculadora " << endl;
-            cout << "6.- Reiniciar la calculadora " << endl;
+    // if (control == 0)
+    // {
+    //     cout << "Calculadora " << endl;
+    //     cout << "__________________" << endl;
 
-            cout << "__________________" << endl;
-            cout << "Valor actual: " << res << endl;
-            cout << "__________________" << endl;
-            cout << "operacion?" << endl;
+    //     cout << "Operaciones: " << endl;
+    //     cout << "1.- Sumar" << endl;
+    //     cout << "2.- Restar" << endl;
+    //     cout << "3.- Dividir" << endl;
+    //     cout << "4.- Multiplicar" << endl;
+    //     cout << "__________________" << endl;
+    //     cout << "Valor 1?" << endl;
+    //     cin >> x;
+    //     cout << "Valor 2?" << endl;
+    //     cin >> y;
+    //     cout << "operacion?" << endl;
+    //     cin >> menu;
+    //     res = Calculadora(x, y, menu);
+    //     control++;
+    // }
 
-            cin >> menu;
-            if (menu != 5 && menu != 6)
-            {
-                cout << "Valor 2?" << endl;
-                cin >> y;
-                res = Calculadora(res, y, menu);
-            }
-        }
-    }
+    // if (control != 0)
+    // {
+    //     while (menu != 5 && menu != 6)
+    //     {
+    //         cout << "__________________" << endl;
+    //         cout << "Operaciones: " << endl;
+    //         cout << "1.- Sumar al valor actual" << endl;
+    //         cout << "2.- Restar al valor actual" << endl;
+    //         cout << "3.- Dividir al valor actual" << endl;
+    //         cout << "4.- Multiplicar al valor actual" << endl;
+    //         cout << "5.- Salir de la calculadora " << endl;
+    //         cout << "6.- Reiniciar la calculadora " << endl;
 
-    if (menu == 6)
-        main();
+    //         cout << "__________________" << endl;
+    //         cout << "Valor actual: " << res << endl;
+    //         cout << "__________________" << endl;
+    //         cout << "operacion?" << endl;
 
-    return 0;
+    //         cin >> menu;
+    //         if (menu != 5 && menu != 6)
+    //         {
+    //             cout << "Valor 2?" << endl;
+    //             cin >> y;
+    //             res = Calculadora(res, y, menu);
+    //         }
+    //     }
+    // }
+
+    // if (menu == 6)
+    //     main();
+
+     return 0;
 }

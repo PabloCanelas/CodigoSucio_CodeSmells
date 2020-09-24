@@ -1,0 +1,7 @@
+----------Calculadora------------
+--Operaciones:
+         1.- Sumar
+         2.- Restar
+         3.- Dividir
+         4.- Multiplicar
+         5.- Salir de la calculadora
