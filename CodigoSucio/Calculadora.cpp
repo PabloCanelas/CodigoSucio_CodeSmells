@@ -1,7 +1,10 @@
 #include<iostream>
 #include<vector>
 #include<fstream>
-#include"Suma.cpp"
+#include "Suma.cpp"
+#include "Resta.cpp"
+#include "Division.cpp"
+#include "Multiplicacion.cpp"
 using namespace std;
 class Calculadora
 {
@@ -11,7 +14,7 @@ class Calculadora
     void mostrarMenu(string opcionMenu);
     vector<float> introducirValores();
     void ejecutarCalculadora();
-    float ejecutarOperacion(int numeroOperacion,vector<float>numeros);
+    float ejecutarOperacion(int numeroOperacion,vector<float>numeros,bool primeraOperacion);
     vector<float>introducirValoresContinuando(vector<float>numeros);
 };
 
@@ -53,25 +56,39 @@ vector<float> Calculadora::introducirValores()
 vector<float> Calculadora::introducirValoresContinuando(vector<float>numeros)
 {
   int cantidadValores, valor;
-  cout<<"Cuantos valores desea añadir a su operacion: ";
-  cin>>cantidadValores;
-  for(int i=0;i<cantidadValores;i++)
-  {
-    cout<<"Ingrese el valor "<<i+1<<": ";
-    cin>>valor;
-    numeros.push_back(valor);
-  }
+  cout<<"Ingrese el valor: ";
+  cin>>valor;
+  numeros.push_back(valor);
   cout<<endl;
   return numeros;
 }
-float Calculadora::ejecutarOperacion(int numeroOperacion,vector<float>numeros)
+float Calculadora::ejecutarOperacion(int numeroOperacion,vector<float>numeros, bool primeraOperacion)
 {
   Suma suma;
+  Resta resta;
+  Division division;
+  Multiplicacion multiplicacion;
   float resultado;
   switch(numeroOperacion)
     {
     case 1:
-      resultado=suma.ejecutarOperacion(numeros);
+      resultado=suma.ejecutarOperacion(numeros,primeraOperacion);
+      historialOperaciones.push_back(suma.mostrarOperacion());
+      break;
+    case 2:
+      resultado=resta.ejecutarOperacion(numeros,primeraOperacion);
+      historialOperaciones.push_back(resta.mostrarOperacion());
+      break;
+    case 3:
+      resultado=division.ejecutarOperacion(numeros,primeraOperacion);
+      historialOperaciones.push_back(division.mostrarOperacion());
+      break;
+    case 4:
+      resultado=multiplicacion.ejecutarOperacion(numeros,primeraOperacion);
+      historialOperaciones.push_back(multiplicacion.mostrarOperacion());
+      break;
+    case 6:
+      ejecutarCalculadora();
       break;
     default:
       cout<<"Seleccione una opcion valida"<<endl;
@@ -83,14 +100,15 @@ void Calculadora::ejecutarCalculadora()
 {
   int numeroOperacion,contador=0;
   vector<float>numeros;
-  float ultimoResultado;
+  float ultimoResultado=0;
   mostrarMenu("MenuInicial");
   cout<<"Elige la operacion: ";
   cin>>numeroOperacion;
-  do{
+  while(numeroOperacion!=5)
+  {
     if(contador==0)
     {
-      ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValores());
+      ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValores(),true);
       contador++;
     }
     else
@@ -98,10 +116,11 @@ void Calculadora::ejecutarCalculadora()
       mostrarMenu("Menu");
       cout<<"Elige la operacion: ";
       cin>>numeroOperacion;
+      if(numeroOperacion==6)
+        ejecutarCalculadora();
       numeros.push_back(ultimoResultado);
-      ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValoresContinuando(numeros));
+      ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValoresContinuando(numeros),false);
       numeros.clear();
     }
-    
-  }while(numeroOperacion!=5);
+  }
 }
