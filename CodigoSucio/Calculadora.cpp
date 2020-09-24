@@ -92,9 +92,7 @@ float Calculadora::ejecutarOperacion(int numeroOperacion,vector<float>numeros, b
       ejecutarCalculadora();
       break;
     case 7:
-      system("pause");
       mostrarHistorial();
-
       break;
     default:
       cout<<"Seleccione una opcion valida"<<endl;
@@ -116,7 +114,6 @@ void Calculadora::ejecutarCalculadora()
     {
       ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValores(),true);
       contador++;
-      historialOperaciones.clear();
     }
     else
     {
@@ -124,7 +121,10 @@ void Calculadora::ejecutarCalculadora()
       cout<<"Elige la operacion: ";
       cin>>numeroOperacion;
       if(numeroOperacion==6)
+      {
+        historialOperaciones.clear();
         ejecutarCalculadora();
+      }
       else
       {
         numeros.push_back(ultimoResultado);
@@ -144,7 +144,7 @@ void Calculadora::mostrarHistorial()
       cout<<"------Historial de operaciones--------"<<endl;
       for(int i=0;i<historialOperaciones.size();i++)
       {
-        cout<<i+1<<"."<<historialOperaciones[i]<<endl;
+        cout<<i+1<<".  "<<historialOperaciones[i]<<endl;
       }
     }
     
