@@ -16,6 +16,7 @@ class Calculadora
     void ejecutarCalculadora();
     float ejecutarOperacion(int numeroOperacion,vector<float>numeros,bool primeraOperacion);
     vector<float>introducirValoresContinuando(vector<float>numeros);
+    void mostrarHistorial();
 };
 
 void Calculadora::mostrarMenu(string opcionMenu)
@@ -90,6 +91,11 @@ float Calculadora::ejecutarOperacion(int numeroOperacion,vector<float>numeros, b
     case 6:
       ejecutarCalculadora();
       break;
+    case 7:
+      system("pause");
+      mostrarHistorial();
+
+      break;
     default:
       cout<<"Seleccione una opcion valida"<<endl;
       break;
@@ -110,6 +116,7 @@ void Calculadora::ejecutarCalculadora()
     {
       ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValores(),true);
       contador++;
+      historialOperaciones.clear();
     }
     else
     {
@@ -118,9 +125,27 @@ void Calculadora::ejecutarCalculadora()
       cin>>numeroOperacion;
       if(numeroOperacion==6)
         ejecutarCalculadora();
-      numeros.push_back(ultimoResultado);
-      ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValoresContinuando(numeros),false);
-      numeros.clear();
+      else
+      {
+        numeros.push_back(ultimoResultado);
+        ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValoresContinuando(numeros),false);
+        numeros.clear();  
+      }
+      
     }
   }
+}
+void Calculadora::mostrarHistorial()
+{
+  if(historialOperaciones.size()==0)
+    cout<<"No existen operaciones realizadas aun"<<endl;
+    else
+    { 
+      cout<<"------Historial de operaciones--------"<<endl;
+      for(int i=0;i<historialOperaciones.size();i++)
+      {
+        cout<<i+1<<"."<<historialOperaciones[i]<<endl;
+      }
+    }
+    
 }

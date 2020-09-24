@@ -15,7 +15,13 @@ float Division::ejecutarOperacion(vector<float>numerosDivsion,bool primeraOperac
   totalOperacion=1;
   for(int i=0;i<numeros.size();i++)
   {
-    totalOperacion=numeros[i]/totalOperacion;
+    if(primeraOperacion)
+      totalOperacion=numeros[i]/totalOperacion;
+    else
+    {
+      totalOperacion=numeros[i]/numeros[i+1];
+      break;
+    }
   }
   return totalOperacion;
 }
@@ -26,7 +32,7 @@ string Division::mostrarOperacion()
   {
     concatenado=concatenado+to_string(numeros[i])+"/";
   }
-  cout<<concatenado<<"="<<totalOperacion;
-  cout<<endl;
+  concatenado=concatenado+"="+to_string(totalOperacion);
+  cout<<concatenado<<endl;
   return concatenado;
 }

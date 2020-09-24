@@ -6,3 +6,4 @@
          4.- Multiplicar al valor actual
          5.- Salir de la calculadora
          6.- Reiniciar la calculadora
+         7.- Mostrar historial de operacoines

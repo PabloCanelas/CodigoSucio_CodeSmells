@@ -35,7 +35,7 @@ string Resta::mostrarOperacion()
   {
     concatenado=concatenado+to_string(numeros[i])+"-";
   }
-  cout<<concatenado<<"="<<totalOperacion;
-  cout<<endl;
+  concatenado=concatenado+"="+to_string(totalOperacion);
+  cout<<concatenado<<endl;
   return concatenado;
 }
