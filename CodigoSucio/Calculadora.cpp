@@ -102,7 +102,8 @@ float Calculadora::ejecutarOperacion(int numeroOperacion,vector<float>numeros, b
 }
 void Calculadora::ejecutarCalculadora()
 {
-  int numeroOperacion,contador=0;
+  int numeroOperacion;
+  bool primeraOperacion=true;
   vector<float>numeros;
   float ultimoResultado=0;
   mostrarMenu("MenuInicial");
@@ -110,10 +111,10 @@ void Calculadora::ejecutarCalculadora()
   cin>>numeroOperacion;
   while(numeroOperacion!=5)
   {
-    if(contador==0)
+    if(primeraOperacion)
     {
       ultimoResultado=ejecutarOperacion(numeroOperacion,introducirValores(),true);
-      contador++;
+      primeraOperacion=false;
     }
     else
     {
